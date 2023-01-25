@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Guess";
+}
+
+<body class=@ViewBag.cls>
+    <h3>255356 - My guessing game</h3>
+    <p>Round: @ViewBag.roundNumber</p>
+    <p>History:</p>
+    <p>@ViewBag.history</p>
+    <p>@ViewBag.guess</p>
+    <p class="@ViewBag.cls">Result: @ViewBag.message</p>
+</body>
+

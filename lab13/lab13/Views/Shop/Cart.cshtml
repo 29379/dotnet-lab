@@ -1,0 +1,84 @@
+﻿@model IEnumerable<lab13.ViewModels.CartItemViewModel>
+
+@using Microsoft.AspNetCore.Identity
+
+@{
+    ViewData["Title"] = "Cart";
+}
+<h1>Your shopping cart</h1>
+@if (@Model.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="text-align: center">
+                    @Html.DisplayNameFor(model => model.Article.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Article.Name)
+                </th>
+                <th style="text-align: right">
+                    @Html.DisplayNameFor(model => model.Article.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Article.Category)
+                </th>
+                <th></th>
+                <th style="text-align: right">
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="text-align: center">
+                        <img class="img-thumbnail my-thumbnail" src="@Html.DisplayFor(modelItem => item.Article.Image)" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Article.Name)
+                    </td>
+                    <td style="text-align: right">
+                        @Html.DisplayFor(modelItem => item.Article.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Article.Category.Name)
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("ReduceCartItem", "Shop", new { id = item.Article.Id }, FormMethod.Post))
+                        {
+                            <button type="submit" class="btn btn-warning" style="float: right">Reduce</button>
+                        }
+                    </td>
+                    <td style="text-align: center">
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("AddCartItem", "Shop", new { id = item.Article.Id }, FormMethod.Post))
+                        {
+                            <button type="submit" class="btn btn-success" style="float: left">Add</button>
+                        }
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("DeleteCartItem", "Shop", new { id = item.Article.Id }, FormMethod.Post))
+                        {
+                            <button type="submit" class="btn btn-danger" style="float:left">Delete</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h3 style="text-align: center; margin: 0 45px">Total: @ViewBag.Total</h3>
+    @using (Html.BeginForm("PlaceOrder", "Shop", FormMethod.Get))
+    {
+        <button type="submit" class="btn btn-primary" style="align-content: end">Place order</button>
+    }
+}
+else
+{
+    <h3 style="text-align: center;">Your cart is empty.</h3>
+}

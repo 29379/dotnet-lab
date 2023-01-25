@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Guess";
+}
+
+<body class=@ViewBag.cls>
+    <h3>255356 - My guessing game</h3>
+    <p>Round: @ViewBag.round</p>
+    <p>History:</p>
+    <ul id="history">
+        @foreach (var prev in ViewBag.gameHistory)
+        {
+            <li> <p>@prev</p> </li>
+        }
+    </ul>
+
+    <p class="@ViewBag.cls">Result: @ViewBag.message</p>
+</body>
+

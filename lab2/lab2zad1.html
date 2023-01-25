@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>255356 lab2zad1</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+
+    <meta name="author" content="Jakub Krupiński, 255356">
+    <meta name="description" content="My solution to lab3zad1">
+    <meta name="color-scheme" content="dark">
+    <meta name="keywords" content="Aplikacje webowe na platformę .NET">
+
+</head>
+<body>
+    <header>
+        This is the website header
+    </header>
+    <h1>Few special symbols:    &reg; ,  &copy; ,   &gt; ,  &phone; ,  &trade;</h1>
+    
+    <p>Simple text</p>
+    <p><strong>Strong text</strong></p>
+    <p><em>Emphasized text</em></p>
+    <p><mark>Marked text</mark></p>
+    <p><del>Deleted (crossed out) text</del></p>
+    <p>E = m * c<sup>2</sup></p>
+
+    <table border="5" id="10">
+        <caption><strong>Premier league standings</strong></caption>
+        
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th>Club</th>
+                <th>Played</th>
+                <th>Goal difference</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr style="text-align: center">
+                <td>1</td>
+                <td>Arsenal</td>
+                <td>10</td>
+                <td>14</td>
+                <td>27</td>
+            </tr>
+            <tr style="text-align: center">
+                <td>2</td>
+                <td>Tottenham Hotspur</td>
+                <td>11</td>
+                <td>12</td>
+                <td>24</td>
+            </tr>
+            <tr style="text-align: center">
+                <td>3</td>
+                <td>Manchester City</td>
+                <td>10</td>
+                <td>23</td>
+                <td>23</td>
+            </tr>
+            <tr style="text-align: center">
+                <td>4</td>
+                <td>Chelsea</td>
+                <td>10</td>
+                <td>5</td>
+                <td>20</td>
+            </tr>
+            <tr style="text-align: center">
+                <td>5</td>
+                <td>Newcastle United</td>
+                <td>11</td>
+                <td>9</td>
+                <td>18</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <p>Unordered list:</p>
+    <ul>
+        <li>C</li>
+        <li>B</li>
+        <li>A</li>
+    </ul>
+
+    <p>Ordered list:</p>
+    <ol>
+        <li>C</li>
+        <li>B</li>
+        <li>A</li>
+    </ol>
+
+    <p>Description list:</p>
+    <dl>
+        <dt>Term</dt>
+        <dd>Definition</dd>
+        <dt>Something</dt>
+        <dd>Explained</dd>
+        <dt>Very</dt>
+        <dd>Wise</dd>
+    </dl>
+
+    <p>Multilayered nested lists</p>
+    <ul>
+        <li>
+            First element, first layer
+        </li>
+        <li>
+            Second element, first layer
+            <ol>
+                <li>
+                    First element, second layer
+                    <ol>
+                        <li>
+                            First element, third layer
+                        </li>
+                        <li>
+                            Second element, third layer
+                        </li>
+                        <li>
+                            Third element, third layer
+                            <ol>
+                                <li>
+                                    First element, fourth layer
+                                </li>
+                                <li>
+                                    Second element, fourth layer
+                                </li>
+                                <li>
+                                    Third element, fourth layer
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    Second element, second layer
+                </li>
+                <li>
+                    Third element, second layer
+                </li>
+            </ol>
+        </li>
+        <li>
+            Third element, first layer
+        </li>
+    </ul><br>
+
+    <!-- Formularz z wykorzystaniem co najmniej 10 różnymi typami pól bez submit i reset -->
+    <form method="post">
+        <label>Insert some text here:</label>
+        <input type="text" name="ftext"><br>
+        <label>Insert a month:</label>
+        <input type="month" name="fmonth"><br>
+        <label>Press it for glory:</label>
+        <input type="button" name="fbutton" value="Do nothing"><br>
+        <label>Check it please:</label>
+        <input type="checkbox" name="fcheckbox"><br>
+        <label>You wont send any image anyway:</label>
+        <input type="image" name="fimage" alt="Yikes"><br>
+        <label>Choose a number:</label>
+        <input type="number" name="fnumber"><br>
+        <label>Insert a password here:</label>
+        <input type="password" name="fpassword"><br>
+        <label>It does nothing btw:</label>
+        <input type="radio" name="fradio"><br>
+        <label>Play around with it:</label>
+        <input type="range" name="frange"><br>
+        <label>Telephone number should be here:</label>
+        <input type="tel" name="ftel"><br>
+        <label>URL address should be here:</label>
+        <input type="url" name="furl"><br>
+        <label>Select time:</label>
+        <input type="time" name="ftime"><br>
+        <label>Submit all of this:</label>
+        <input type="submit" name="fsubmit">
+    </form>
+    <br>
+
+    
+    <table border="5">
+        <tr style="text-align: center">
+            <td colspan="2" rowspan="3">
+                <img src="data:image/jpeg;base64,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" alt="Some image">
+            </td>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+        </tr>
+
+        <tr style="text-align: center">
+            <td>D</td>
+            <td>E</td>
+            <td rowspan="3">&#64;</TD>
+        </tr>
+
+        <tr style="text-align: center">
+            <td colspan="2">
+                <a href="https://www.netflix.com/browse">Netflix &amp; chill</a>
+            </td>
+        </tr>
+
+        <tr style="text-align: center">
+            <td>F</td>
+            <td>G</td>
+            <td>H</td>
+            <td>I</td>
+        </tr>
+        
+        <tfoot>
+            <tr style="text-align: center">
+                <td>J</td>
+                <td colspan="3">Footer</td>
+                <td>K</td>
+            </tr>
+        </tfoot>
+    </table>
+
+
+    <footer>
+        This is the website footer  -   
+        <a href="#10">Premier league standings link</a>
+    </footer>
+
+    <aside>
+        Content out of bounds of the website, something could go on here
+    </aside>
+</body>
+</html>

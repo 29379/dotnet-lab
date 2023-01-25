@@ -1,0 +1,96 @@
+﻿@model IEnumerable<lab13.Models.Article>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section class="my-options" width: 60%;>
+    <ul>
+        @if (@ViewBag.Current != null)
+        {
+            <li class="normal"><a asp-action="Index"><b>All categories</b></a></li>
+        }
+        else
+        {
+            <li class="current"><a asp-action="Index"><b>All categories</b></a></li>
+        }
+        @foreach (var item in ViewBag.Categories)
+        {
+            @if (item.Id == ViewBag.Current)
+            {
+                <li class="current"><a asp-action="IndexList" asp-route-id="@item.Id"><b>@item.Name</b></a></li>
+            }
+            else
+            {
+                <li class="normal"><a asp-action="IndexList" asp-route-id="@item.Id"><b>@item.Name</b></a></li>
+            }
+        }
+    </ul>
+</section>
+
+@if (User.IsInRole("Admin"))
+{
+    <p>As an administrator you do not have access to the shopping cart</p>
+}
+else
+{
+    <div>
+        <a asp-action="Cart" class="btn btn-secondary" style="float: right">Cart</a>
+    </div>
+}
+
+<section class="right" width: 60%;>
+    <h1>Shop</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img class="img-thumbnail my-thumbnail" src="@Html.DisplayFor(modelItem => item.Image)" width="96px" height="54px" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    </td>
+                    <td>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <p>Access to the cart denied</p>
+                        }
+                        else
+                        {
+                            @using (Html.BeginForm("AddCartItem", "Shop", new { id = item.Id }, FormMethod.Post))
+                            {
+                                <button type="submit" class="btn btn-success">Add to cart</button>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
+

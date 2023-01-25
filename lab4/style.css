@@ -1,0 +1,39 @@
+body{
+    background-color:rgb(207, 192, 165);
+}
+
+
+#mulTable{
+    background-color:inherit;
+    height: fit-content;
+    width: fit-content;
+    padding: 3px;
+    font-family:'Courier New', Courier, monospace;
+    text-align: center;
+    position:static;
+    width: 300px;
+}
+
+#cap{
+    font-weight:normal;
+    padding: 3px;
+}
+
+th{
+    background-color:steelblue;
+}
+
+.even{
+    background-color: paleturquoise;
+}
+
+.odd{
+    background-color: yellowgreen;
+}
+
+.myCanvas{
+    background-color:lightgray;
+    position: static;
+    left: 300px;
+    border: 1px solid steelblue;
+}

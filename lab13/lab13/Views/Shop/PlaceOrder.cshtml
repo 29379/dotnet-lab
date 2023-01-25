@@ -1,0 +1,107 @@
+﻿@model lab13.ViewModels.OrderViewModel
+
+@using Microsoft.AspNetCore.Identity
+
+@{
+    ViewData["Title"] = "Cart";
+}
+<h1>Place your order</h1>
+@if (Model.Items.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="text-align: center">
+                    @Html.DisplayNameFor(model => model.Items.First().Article.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Items.First().Article.Name)
+                </th>
+                <th style="text-align: right">
+                    @Html.DisplayNameFor(model => model.Items.First().Article.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Items.First().Article.Category)
+                </th>
+                <th></th>
+                <th style="text-align: right">
+                    @Html.DisplayNameFor(model => model.Items.First().Quantity)
+                </th>
+                <th></th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td style="text-align: center">
+                        <img class="img-thumbnail my-thumbnail" src="@Html.DisplayFor(modelItem => item.Article.Image)" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Article.Name)
+                    </td>
+                    <td style="text-align: right">
+                        @Html.DisplayFor(modelItem => item.Article.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Article.Category.Name)
+                    </td>
+                    <td style="text-align: center">
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h3 style="text-align: right; margin: 0 45px">Total: @ViewBag.Total</h3>
+    
+    <hr />
+
+    <h2>Order details</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="ConfirmOrder">
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Name:</label>
+                    <input asp-for="Name" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Surname" class="control-label">Surname:</label>
+                    <input asp-for="Surname" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label">Email:</label>
+                    <input asp-for="Email" type="email" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Phone" class="control-label">Phone number:</label>
+                    <input asp-for="Phone" type="tel" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address" class="control-label">Address:</label>
+                    <input asp-for="Address" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ZipCode" class="control-label">Zip code:</label>
+                    <input asp-for="ZipCode" type="text" pattern="\d{2}-\d{3}" title="Five digit zip code" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Payment" class="control-label">Payment method:</label>
+                    <select asp-for="Payment" class="form-control" asp-items="ViewBag.paymentMethod"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Confirm order" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+}
+else
+{
+    <h2 style="text-align: center; margin-top: 50px;">Your cart is empty.</h2>
+}

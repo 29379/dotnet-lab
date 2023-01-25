@@ -1,0 +1,142 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Lab5";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    var size = window.prompt("Input the size of the multiplication table");
+</script>
+
+<canvas class="myCanvas" width="500" height="300">The browser does not support the 'canvas' tag</canvas>
+<canvas class="myCanvas" width="500" height="300">The browser does not support the 'canvas' tag</canvas>
+<canvas class="myCanvas" width="500" height="300">The browser does not support the 'canvas' tag</canvas>
+<script>
+
+    function getMousePosition(canvas) {
+        if (mouseOver) {
+            let rectangle = canvas.getBoundingClientRect();
+            let canvasEvent = window.event;
+            return {
+                x: canvasEvent.clientX - rectangle.left,
+                y: canvasEvent.clientY - rectangle.top
+            };
+        }
+        else return null;
+    }
+
+    function clearCanvas(canvas) {
+        mouseOver = false;
+        const context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.beginPath();
+    }
+
+    function drawLines(canvas) {
+        const context = canvas.getContext('2d');
+        context.lineWidth = 1;
+        context.strokeStyle = 'steelblue';
+
+        let position = getMousePosition(canvas);
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.beginPath();
+
+        let canvasCorners = [[0, 0], [0, canvas.height], [canvas.width, 0], [canvas.width, canvas.height]];
+        canvasCorners.forEach(pair => {
+            context.moveTo(position.x, position.y);
+            context.lineTo(pair[0], pair[1]);
+        });
+
+        context.stroke();
+    }
+
+    //var canvasElement = document.getElementById("myCanvas");
+    var canvasElement = document.getElementsByClassName("myCanvas");
+    for (var i = 0; i < canvasElement.length; i++){
+        const elem = canvasElement[i];
+        var mouseOver = false;
+        elem.addEventListener("mouseover", function(){ mouseOver = true });
+        elem.addEventListener("mousemove", function(){ return drawLines(elem) });
+        elem.addEventListener("mouseleave", function(){ return clearCanvas(elem) });
+    }
+</script>
+
+<table id="mulTable">
+    <caption id="cap">Multiplication table size: <strong id="mts"></strong></caption>
+</table>
+
+<script>
+    function getRandomInteger(min, max) {
+        const output = Math.floor(Math.random() * (max - min + 1) + min);
+        return output;
+    }
+
+    function isInt(value) {
+        if (isNaN(value)) {
+            return false;
+        }
+        var x = parseFloat(value);
+        return (x | 0) == x;
+    }
+
+    function createTable(size) {
+        const tab = document.getElementById("mulTable");
+        const tabBody = document.createElement("tbody");
+
+        tabBody.style.width = '200px';
+        tabBody.style.border = '1px solid black';
+        tabBody.style.borderCollapse = 'collapse';
+
+        let contents = [];
+
+        if (size < 5 || size > 20 || !isInt(size)) {
+            window.alert("The given size of the multiplication table was not appriopriate! It will automatically get changed to 8")
+            size = 8;
+        }
+
+        var pElem = document.getElementById("mts");
+        pElem.textContent = size;
+
+        for (let i = 0; i < size; i++) {
+            const row = document.createElement('tr');
+
+            for (let j = 0; j < size; j++) {
+                //let cell = row.insertCell();
+                let cell;
+                let cellText;
+
+                if (i == 0) {
+                    cell = document.createElement('th');
+                    cellText = getRandomInteger(1, 99);
+                    contents[j] = cellText;
+                }
+                else if (j == 0) {
+                    cell = document.createElement('th');
+                    cellText = contents[i];
+                }
+                else {
+                    cell = document.createElement('td');
+                    cellText = contents[i] * contents[j];
+                    if (cellText % 2 == 0) {
+                        cell.classList.add('even');
+                    }
+                    else {
+                        cell.classList.add('odd');
+                    }
+                }
+
+                cell.appendChild(document.createTextNode(cellText));
+                cell.style.border = '1px solid black';
+                cell.style.borderCollapse = 'collapse';
+                row.appendChild(cell);
+            }
+
+            tabBody.appendChild(row);
+        }
+
+        tab.appendChild(tabBody);
+    }
+
+    createTable(size);
+</script>
